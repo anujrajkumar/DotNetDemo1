@@ -19,7 +19,14 @@ stages:
   jobs:
     - job: build
       steps:
-      - script: pwd
-      - script: ls -al
       - script: dotnet build
         displayName: 'dotnet build'
+      
+      - script: dotnet publish -o $(build.artifactStagingDirectory)
+        displayName: 'publish artifacts'
+      
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: $(build.artifactStagingDirectory)
+          artifact: 'drop'
+          publishLocation: 'pipeline'
