@@ -23,4 +23,3 @@ stages:
       - script: ls -al
       - script: dotnet build
         displayName: 'dotnet build'
-        workingDirectory: $(solution)
