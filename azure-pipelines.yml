@@ -19,6 +19,8 @@ stages:
   jobs:
     - job: build
       steps:
+      - script: pwd
+      - script: ls -al
       - script: dotnet build
         displayName: 'dotnet build'
         workingDirectory: $(solution)
