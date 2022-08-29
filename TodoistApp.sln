@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoistApp.Blazor", "TodoistApp.Blazor\TodoistApp.Blazor.csproj", "{338555C4-2065-4864-BE92-D0F2ABC0A613}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoistApp.Blazor", "TodoistApp.Blazor\TodoistApp.Blazor.csproj", "{338555C4-2065-4864-BE92-D0F2ABC0A613}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BFE17AC9-D40C-4B62-9706-272280D715C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{338555C4-2065-4864-BE92-D0F2ABC0A613} = {BFE17AC9-D40C-4B62-9706-272280D715C7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06424D2D-B572-432C-B86B-06D4764F912B}
