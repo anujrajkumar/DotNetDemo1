@@ -31,6 +31,7 @@ stages:
           artifact: 'drop'
           publishLocation: 'pipeline'
 
+
 - stage: deploy_app
   jobs:
     - job: deploy
@@ -42,7 +43,7 @@ stages:
             targetPath: '$(Pipeline.Workspace)/drop'
         - task: AzureWebApp@1
           inputs:
-            azureSubscription: 'Visual Studio Enterprise Subscription(97fbe79d-f21c-4cd0-b87f-8bd8df413e0a)'
+            azureSubscription: 'Visual Studio Enterprise MVP(97fbe79d-f21c-4cd0-b87f-8bd8df413e0a)'
             appType: 'webAppLinux'
             appName: 'TodoistApp'
             package: '$(Pipeline.Workspace)/drop'
