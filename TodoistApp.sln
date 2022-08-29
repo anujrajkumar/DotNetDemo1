@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoistApp.Blazor", "Todois
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{BFE17AC9-D40C-4B62-9706-272280D715C7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2FF53DBF-0F61-4C87-8BFA-B92E2FB64758}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TodoistApp.UnitTests", "tests\TodoistApp.UnitTests\TodoistApp.UnitTests.csproj", "{50E29ABA-C1B8-494A-8B52-688B8C47CB32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{338555C4-2065-4864-BE92-D0F2ABC0A613}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{338555C4-2065-4864-BE92-D0F2ABC0A613}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{338555C4-2065-4864-BE92-D0F2ABC0A613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50E29ABA-C1B8-494A-8B52-688B8C47CB32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50E29ABA-C1B8-494A-8B52-688B8C47CB32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50E29ABA-C1B8-494A-8B52-688B8C47CB32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50E29ABA-C1B8-494A-8B52-688B8C47CB32}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{338555C4-2065-4864-BE92-D0F2ABC0A613} = {BFE17AC9-D40C-4B62-9706-272280D715C7}
+		{50E29ABA-C1B8-494A-8B52-688B8C47CB32} = {2FF53DBF-0F61-4C87-8BFA-B92E2FB64758}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06424D2D-B572-432C-B86B-06D4764F912B}
