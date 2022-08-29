@@ -32,6 +32,15 @@ stages:
           publishLocation: 'pipeline'
 
 
+- stage: test
+  jobs:
+    - job: test
+      steps:
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'test'
+          projects: '**/*[Tt]est*/*.csproj'
+
 - stage: deploy_app
   jobs:
     - job: deploy
