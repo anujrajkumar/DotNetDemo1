@@ -12,7 +12,7 @@ pool:
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
-  buildConfiguration: 'Debug'
+  buildConfiguration: 'Release'
 
 stages:
 - stage: build
@@ -38,6 +38,7 @@ stages:
       
       - task: NDependTask@1
         inputs:
+          BinariesOutput: 'TodoistApp.Blazor\bin\Release'
           BuildGates: true
           Assemblies: false
         env:
