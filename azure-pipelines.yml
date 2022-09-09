@@ -51,6 +51,7 @@ stages:
   jobs:
     - job: 'ndepend'
       steps:
+      
       - task: NDependTask@1
         inputs:
           ndproj: 'TodoistApp.ndproj'
