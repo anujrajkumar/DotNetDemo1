@@ -361,11 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/ROOM/ROOM/Cache/
-/Targo.Bot/Cache/1/Opportunity
-/Targo.Functions/.vscode
 
-Targo.Functions/Properties/launchSettings.json
-
-Targo.Functions/local.settings.json
-/Report/*
+#nDepend
+integration/
+lib/
+current.ndar
+nDepend.Reports/
