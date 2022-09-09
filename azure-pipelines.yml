@@ -32,9 +32,7 @@ stages:
           targetPath: $(build.artifactStagingDirectory)
           artifact: 'drop'
           publishLocation: 'pipeline'
-    - job: 'ndepend'
-      steps:
-      - script: dir src\TodoistApp.Blazor
+      - script: dir $(build.artifactStagingDirectory)
         displayName: 'dir blazor'
       - script: dir src
         displayName: 'dir src'
