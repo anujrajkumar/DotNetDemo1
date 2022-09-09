@@ -31,6 +31,16 @@ stages:
           artifact: 'drop'
           publishLocation: 'pipeline'
 
+- stage: 'static_code_analysis'
+  jobs:
+    - job: 'ndepend'
+      steps:
+      
+      - task: NDependTask@1
+        inputs:
+          ndproj: 'TodoistApp.ndproj'
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
 - stage: test
   jobs:
@@ -47,14 +57,6 @@ stages:
           codeCoverageTool: 'Cobertura'
           summaryFileLocation: '**/*coverage.cobertura.xml'
 
-- stage: 'static_code_analysis'
-  jobs:
-    - job: 'ndepend'
-      steps:
-      
-      - task: NDependTask@1
-        inputs:
-          ndproj: 'TodoistApp.ndproj'
 - stage: deploy_app
   jobs:
     - job: deploy
