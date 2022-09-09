@@ -38,7 +38,7 @@ stages:
       
       - task: NDependTask@1
         inputs:
-          ndproj: 'TodoistApp.ndproj'
+          Assemblies: true
         env:
           SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
