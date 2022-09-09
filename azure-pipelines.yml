@@ -38,7 +38,8 @@ stages:
       
       - task: NDependTask@1
         inputs:
-          Assemblies: true
+          BuildGates: true
+          Assemblies: false
         env:
           SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
