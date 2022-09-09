@@ -32,9 +32,6 @@ stages:
           targetPath: $(build.artifactStagingDirectory)
           artifact: 'drop'
           publishLocation: 'pipeline'
-
-- stage: 'static_code_analysis'
-  jobs:
     - job: 'ndepend'
       steps:
       - script: dir src\TodoistApp.Blazor
@@ -50,6 +47,8 @@ stages:
           SYSTEM_ACCESSTOKEN: $(System.AccessToken)
       - script: dir $(build.artifactStagingDirectory) 
         displayName: 'dir'
+
+
 
 - stage: test
   jobs:
