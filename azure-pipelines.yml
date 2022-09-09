@@ -19,12 +19,14 @@ stages:
   jobs:
     - job: build
       steps:
-      - script: dotnet build
-        displayName: 'dotnet build'
-      
-      - script: dotnet publish -o $(build.artifactStagingDirectory)
-        displayName: 'publish artifacts'
-      
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'build'
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'publish'
+          publishWebProjects: true
+          arguments: '-o $(build.artifactStagingDirectory)'
       - task: PublishPipelineArtifact@1
         inputs:
           targetPath: $(build.artifactStagingDirectory)
@@ -42,8 +44,12 @@ stages:
       - script: dir 
         displayName: 'dir'
       - task: NDependTask@1
+        inputs:
+          BinariesOutput: '$(build.artifactStagingDirectory)'
         env:
           SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+      - script: dir $(build.artifactStagingDirectory) 
+        displayName: 'dir'
 
 - stage: test
   jobs:
