@@ -27,7 +27,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\TodoistApp.Blazor\TodoistApp.Blazor.csproj" />
-    <ProjectReference Include="..\..\TodoistApp.Blazor\TodoistApp.Blazor.csproj" />
   </ItemGroup>
 
 </Project>
