@@ -35,10 +35,11 @@ stages:
   jobs:
     - job: 'ndepend'
       steps:
-      
+      - script: dir
+        displayName: 'ls'
       - task: NDependTask@1
         inputs:
-          BinariesOutput: 'TodoistApp.Blazor\bin\Release'
+          BinariesOutput: 'src\TodoistApp.Blazor\bin\Release'
           BuildGates: true
           Assemblies: false
         env:

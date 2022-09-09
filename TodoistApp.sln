@@ -11,6 +11,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{2FF53DBF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoistApp.UnitTests", "tests\TodoistApp.UnitTests\TodoistApp.UnitTests.csproj", "{50E29ABA-C1B8-494A-8B52-688B8C47CB32}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{16CB6ED0-8267-4157-B6B0-71151E7BAE44}"
+	ProjectSection(SolutionItems) = preProject
+		azure-pipelines.yml = azure-pipelines.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,8 +40,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {06424D2D-B572-432C-B86B-06D4764F912B}
-	EndGlobalSection
-	GlobalSection(NDepend) = preSolution
-		Project = ".\TodoistApp.ndproj"
 	EndGlobalSection
 EndGlobal
