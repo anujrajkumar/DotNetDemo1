@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 variables:
   solution: '**/*.sln'
@@ -31,6 +31,18 @@ stages:
           artifact: 'drop'
           publishLocation: 'pipeline'
 
+- stage: 'static_code_analysis'
+  jobs:
+    - job: 'ndepend'
+      steps:
+      
+      - task: NDependTask@1
+        inputs:
+          BinariesOutput: 'TodoistApp.Blazor\bin\Release'
+          BuildGates: true
+          Assemblies: false
+        env:
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
 - stage: test
   jobs:
