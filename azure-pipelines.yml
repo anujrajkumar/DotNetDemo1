@@ -33,12 +33,6 @@ stages:
           targetPath: $(build.artifactStagingDirectory)
           artifact: 'drop'
           publishLocation: 'pipeline'
-      - script: dir $(build.artifactStagingDirectory)
-        displayName: 'dir blazor'
-      - script: dir src
-        displayName: 'dir src'
-      - script: dir 
-        displayName: 'dir'
       - task: NDependTask@1
         inputs:
           BinariesOutput: '$(build.artifactStagingDirectory)'
@@ -52,12 +46,14 @@ stages:
   jobs:
     - job: 'ndepend'
       steps:
+      - script: dir $(build.artifactStagingDirectory)
+        displayName: 'dir blazor'
       
       - task: NDependTask@1
         inputs:
           BinariesOutput: '$(build.artifactStagingDirectory)'
         env:
-          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken))
 
 
 
