@@ -53,7 +53,7 @@ stages:
         inputs:
           BinariesOutput: '$(build.artifactStagingDirectory)'
         env:
-          SYSTEM_ACCESSTOKEN: $(System.AccessToken))
+          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
 
 
 
