@@ -38,25 +38,7 @@ stages:
           BinariesOutput: '$(build.artifactStagingDirectory)'
         env:
           SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-      - script: dir $(build.artifactStagingDirectory) 
-        displayName: 'dir'
         
-        
-- stage: 'static_code_analysis'
-  jobs:
-    - job: 'ndepend'
-      steps:
-      - script: dir $(build.artifactStagingDirectory)
-        displayName: 'dir blazor'
-      
-      - task: NDependTask@1
-        inputs:
-          BinariesOutput: '$(build.artifactStagingDirectory)'
-        env:
-          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
-
-
-
 - stage: test
   jobs:
     - job: test
