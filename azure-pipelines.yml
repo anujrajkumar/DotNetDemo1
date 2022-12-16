@@ -27,7 +27,7 @@ stages:
           command: 'test'
           projects: '**/*[Tt]est*/*.csproj'
           publishTestResults: false
-          arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --collect “Code coverage”'
+          arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --collect "Code coverage"  DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=opencover,cobertura'
       - task: PublishCodeCoverageResults@1
         inputs:
           codeCoverageTool: 'Cobertura'
