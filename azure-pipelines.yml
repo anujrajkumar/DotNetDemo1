@@ -15,6 +15,23 @@ variables:
   buildConfiguration: 'Release'
 
 stages:
+- stage: test
+  jobs:
+    - job: test
+      steps:
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'build'
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'test'
+          projects: '**/*[Tt]est*/*.csproj'
+          publishTestResults: true
+          arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
+      - task: PublishCodeCoverageResults@1
+        inputs:
+          codeCoverageTool: 'Cobertura'
+          summaryFileLocation: '**/*coverage.cobertura.xml'
 - stage: build
   jobs:
     - job: build
@@ -39,20 +56,7 @@ stages:
         env:
           SYSTEM_ACCESSTOKEN: $(System.AccessToken)
         
-- stage: test
-  jobs:
-    - job: test
-      steps:
-      - task: DotNetCoreCLI@2
-        inputs:
-          command: 'test'
-          projects: '**/*[Tt]est*/*.csproj'
-          publishTestResults: true
-          arguments: '--configuration $(buildConfiguration) /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura'
-      - task: PublishCodeCoverageResults@1
-        inputs:
-          codeCoverageTool: 'Cobertura'
-          summaryFileLocation: '**/*coverage.cobertura.xml'
+
 
 - stage: deploy_app
   jobs:
