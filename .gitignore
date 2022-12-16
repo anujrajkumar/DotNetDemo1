@@ -367,3 +367,4 @@ integration/
 lib/
 current.ndar
 nDepend.Reports/
+tests/TodoistApp.UnitTests/coverage.cobertura.xml
