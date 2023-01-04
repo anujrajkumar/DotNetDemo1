@@ -86,6 +86,9 @@ stages:
           projects: '**/*[Tt]est*/*.csproj'
           publishTestResults: true
           arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --collect "Code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura --settings:coverage.runsettings'
+    - job: Publish_Test_Result
+      condition: succeededOrFailed()
+      steps:
       - task: PublishCodeCoverageResults@1
         inputs:
           codeCoverageTool: 'Cobertura'
