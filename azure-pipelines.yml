@@ -37,8 +37,9 @@ stages:
 ##################################################################################          
 
 - stage: Build
+  displayName: Project Build
   jobs:
-    - job: Project_Build
+    - job: Build_Project
       steps:
       # - task: SonarCloudPrepare@1
       #   inputs:
@@ -47,6 +48,7 @@ stages:
       #     scannerMode: 'MSBuild'
       #     projectKey: 'DevOpsXperts-POC_DotNetDemoPipeline'
       #     projectName: 'DotNetDemoPipeline'
+      
       - task: DotNetCoreCLI@2
         inputs:
           command: 'build'
@@ -71,3 +73,20 @@ stages:
       #     BinariesOutput: '$(build.artifactStagingDirectory)'
       #   env:
       #     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+
+############################################################################################
+- stage: Unit_Test
+  displayName: Running Unit Test
+  jobs:
+    - job: Unit_Test
+      steps:
+      - task: DotNetCoreCLI@2
+        inputs:
+          command: 'test'
+          projects: '**/*[Tt]est*/*.csproj'
+          publishTestResults: true
+          arguments: '/p:CollectCoverage=true /p:CoverletOutputFormat=cobertura --collect "Code coverage" -- DataCollectionRunSettings.DataCollectors.DataCollector.Configuration.Format=cobertura --settings:coverage.runsettings'
+      - task: PublishCodeCoverageResults@1
+        inputs:
+          codeCoverageTool: 'Cobertura'
+          summaryFileLocation: '**/*cobertura.xml'
