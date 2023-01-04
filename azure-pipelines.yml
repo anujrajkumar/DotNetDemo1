@@ -33,6 +33,9 @@ stages:
       - task: SonarCloudPublish@1
         inputs:
           pollingTimeoutSec: '300'
+
+##################################################################################          
+
 - stage: Build
   jobs:
     - job: Project_Build
