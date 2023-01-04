@@ -14,14 +14,12 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-# stages:
+stages:
 # - stage: Static_Code_Analysis
 #   displayName: Static Code Analysis
 #   jobs:
 #     - job: SAST
 #       steps:
-
-      
 
 - stage: Build
   jobs:
