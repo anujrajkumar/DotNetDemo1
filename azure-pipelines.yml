@@ -15,9 +15,27 @@ variables:
   buildConfiguration: 'Release'
 
 stages:
-- stage: build
+- stage: Static_Code_Analysis
+  displayName: Static Code Analysis
   jobs:
-    - job: build
+    - job: SAST
+      steps:
+      - task: SonarCloudPrepare@1
+        inputs:
+          SonarCloud: 'DotNetDemoPipeline'
+          organization: 'demo-pipeline'
+          scannerMode: 'MSBuild'
+          projectKey: 'DevOpsXperts-POC_DotNetDemoPipeline'
+          projectName: 'DotNetDemoPipeline'
+      
+      - task: SonarCloudPublish@1
+        inputs:
+          pollingTimeoutSec: '300'
+
+
+- stage: Build
+  jobs:
+    - job: Project_Build
       steps:
       - task: DotNetCoreCLI@2
         inputs:
@@ -33,10 +51,10 @@ stages:
           targetPath: $(build.artifactStagingDirectory)
           artifact: 'drop'
           publishLocation: 'pipeline'
-      - task: NDependTask@1
-        inputs:
-          BinariesOutput: '$(build.artifactStagingDirectory)'
-        env:
-          SYSTEM_ACCESSTOKEN: $(System.AccessToken)
+      # - task: NDependTask@1
+      #   inputs:
+      #     BinariesOutput: '$(build.artifactStagingDirectory)'
+      #   env:
+      #     SYSTEM_ACCESSTOKEN: $(System.AccessToken)
         
 -
