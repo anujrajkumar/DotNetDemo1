@@ -14,11 +14,18 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-stages:
-- stage: Static_Code_Analysis
-  displayName: Static Code Analysis
+# stages:
+# - stage: Static_Code_Analysis
+#   displayName: Static Code Analysis
+#   jobs:
+#     - job: SAST
+#       steps:
+
+      
+
+- stage: Build
   jobs:
-    - job: SAST
+    - job: Project_Build
       steps:
       - task: SonarCloudPrepare@1
         inputs:
@@ -27,12 +34,6 @@ stages:
           scannerMode: 'MSBuild'
           projectKey: 'DevOpsXperts-POC_DotNetDemoPipeline'
           projectName: 'DotNetDemoPipeline'
-      
-
-- stage: Build
-  jobs:
-    - job: Project_Build
-      steps:
       - task: DotNetCoreCLI@2
         inputs:
           command: 'build'
