@@ -11,5 +11,12 @@ namespace TodoistApp.UnitTests
             var numberOfTasks = new TaskFetcher().GetNumberOfTasks();
             Assert.Equal(0, numberOfTasks);
         }
+
+        [Fact]
+        public void GetNumberOfTasks_Should_Return_0()
+        {
+            var numberOfTasks = new TaskFetcher().GetNumberOfTasks();
+            Assert.Equal(1, numberOfTasks);
+        }
     }
 }
