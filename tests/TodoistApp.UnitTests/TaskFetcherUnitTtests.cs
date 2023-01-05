@@ -1,6 +1,5 @@
 
 using TodoistApp.Blazor.Services;
-using Prime.Services;
 
 namespace TodoistApp.UnitTests
 {
