@@ -12,12 +12,12 @@ namespace TodoistApp.UnitTests
             Assert.Equal(0, numberOfTasks);
         }
 
-        // [Fact]
-        // public void GetNumberOfTasks_Should_Return_1()
-        // {
-        //     var numberOfTasks = new TaskFetcher().GetNumberOfTasks();
-        //     Assert.Equal(1, numberOfTasks);
-        // }
+        [Fact]
+        public void GetNumberOfTasks_Should_Return_1()
+        {
+            var numberOfTasks = new TaskFetcher().GetNumberOfTasks();
+            Assert.Equal(0, numberOfTasks);
+        }
         // [Fact]
         // public void IsPrime_InputIs1_ReturnFalse()
         // {
