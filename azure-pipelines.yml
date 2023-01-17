@@ -62,7 +62,7 @@ stages:
 
       - task: PublishPipelineArtifact@1
         inputs:
-          targetPath: $(build.artifactStagingDirectory)
+          targetPath: '$(build.artifactStagingDirectory)'
           artifact: 'drop'
           publishLocation: 'pipeline'
 ##########################################################################################################################################
@@ -93,12 +93,11 @@ stages:
     steps:
     - checkout: none
 
-    - task: DownloadBuildArtifacts@0    
-      displayName: Download WebApp.zip
+    - task: DownloadBuildArtifacts@1
       inputs:
         buildType: 'current'
-        artifactName: 'drop'
-        downloadPath: '$(System.DefaultWorkingDirectory)/drop'
+        downloadType: 'single'
+        downloadPath: '$(System.ArtifactsDirectory)'
 
     # - task: AzureRmWebAppDeployment@4
     #   inputs:
