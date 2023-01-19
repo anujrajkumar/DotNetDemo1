@@ -63,8 +63,7 @@ stages:
       - task: PublishPipelineArtifact@1
         inputs:
           targetPath: '$(build.artifactStagingDirectory)'
-          artifact: 'drop'
-          publishLocation: 'pipeline'
+          artifact: WebApp
 ##########################################################################################################################################
 - stage: Unit_Test
   displayName: Running Unit Test
@@ -96,13 +95,12 @@ stages:
       inputs:
         buildType: 'current'
         downloadType: 'single'
-        artifactName: drop
         downloadPath: '$(System.ArtifactsDirectory)'
 
     - task: AzureRmWebAppDeployment@4
       inputs:
         ConnectionType: 'AzureRM'
-        azureSubscription: 'Microsoft Partner Network(8)(55cf0ba9-e3c1-4ced-b5e9-5abb7b4d39b1)'
+        azureSubscription: 'Microsoft Partner Network(10)(55cf0ba9-e3c1-4ced-b5e9-5abb7b4d39b1)'
         appType: 'webApp'
-        WebAppName: 'app-services-pink-xxivks-xgtqkm1'
-        packageForLinux: '$(System.ArtifactsDirectory)/drop'
+        WebAppName: 'app-services-pink-xxivks-xgtqkml1'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/**/TodoistApp.Blazor'
