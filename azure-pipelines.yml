@@ -60,11 +60,10 @@ stages:
           arguments: '-o $(build.artifactStagingDirectory)'
           zipAfterPublish: false
 
-      - task: PublishPipelineArtifact@1
+      - task: PublishBuildArtifacts@1
         inputs:
-          targetPath: '$(build.artifactStagingDirectory)'
-          artifact: WebApp
-          publishLocation: pipeline
+          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+          ArtifactName: 'drop'
 ##########################################################################################################################################
 - stage: Unit_Test
   displayName: Running Unit Test
@@ -92,14 +91,14 @@ stages:
     steps:
     - checkout: none
 
-    - task: DownloadPipelineArtifact@2
-      displayName: 'Download Pipeline Artifact'
+    - task: DownloadBuildArtifacts@1
       inputs:
-        artifactName: WebApp
+        artifactName: 'drop'
+        downloadPath: '$(System.ArtifactsDirectory)'
 
     - task: AzureRmWebAppDeployment@4
       displayName: 'Azure App Service Deploy'
       inputs:
         azureSubscription: 'Microsoft Partner Network(10)(55cf0ba9-e3c1-4ced-b5e9-5abb7b4d39b1)'
         WebAppName: 'app-services-pink-xxivks-xgtqkml3'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/_DotNetDemoPipeline/WebApp'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/DotNetDemoPipeline/drop'
