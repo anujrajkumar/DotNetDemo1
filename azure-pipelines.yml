@@ -89,8 +89,6 @@ stages:
   jobs:
   - job: Deploy
     displayName: Deploy to Web App
-    pool: 
-      vmImage: 'windows-latest'
     steps:
     - checkout: none
 
@@ -100,10 +98,10 @@ stages:
         downloadType: 'single'
         downloadPath: '$(System.ArtifactsDirectory)'
 
-    # - task: AzureRmWebAppDeployment@4
-    #   inputs:
-    #     ConnectionType: 'AzureRM'
-    #     azureSubscription: 'Microsoft Partner Network(8)(55cf0ba9-e3c1-4ced-b5e9-5abb7b4d39b1)'
-    #     appType: 'webApp'
-    #     WebAppName: 'app-services-pink-xxivks-xgtqkm1'
-    #     packageForLinux: '$(System.DefaultWorkingDirectory)/drop'
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Microsoft Partner Network(8)(55cf0ba9-e3c1-4ced-b5e9-5abb7b4d39b1)'
+        appType: 'webApp'
+        WebAppName: 'app-services-pink-xxivks-xgtqkm1'
+        packageForLinux: '$(build.artifactStagingDirectory)/drop'
