@@ -84,24 +84,21 @@ stages:
           codeCoverageTool: 'Cobertura'
           summaryFileLocation: '**/*cobertura.xml'
 #############################################################################################################################################
-# - stage: Deploy_Stage
-#   displayName: Deploy Stage
-#   jobs:
-#   - job: Deploy
-#     displayName: Deploy to Web App
-#     steps:
-#     - checkout: none
+- stage: Deploy_Stage
+  displayName: Deploy Stage
+  jobs:
+  - job: Deploy
+    displayName: Deploy to Web App
+    steps:
+    - checkout: none
 
-#     - task: DownloadBuildArtifacts@1
-#       inputs:
-#         buildType: 'current'
-#         downloadType: 'single'
-#         downloadPath: '$(System.ArtifactsDirectory)'
+    - task: DownloadBuildArtifacts@1
+      inputs:
+        artifactName: 'WebApp'
 
-#     - task: AzureRmWebAppDeployment@4
-#       inputs:
-#         ConnectionType: 'AzureRM'
-#         azureSubscription: 'Microsoft Partner Network(10)(55cf0ba9-e3c1-4ced-b5e9-5abb7b4d39b1)'
-#         appType: 'webApp'
-#         WebAppName: 'app-services-pink-xxivks-xgtqkml1'
-#         packageForLinux: '$(System.DefaultWorkingDirectory)/**/TodoistApp.Blazor'
+    - task: AzureRmWebAppDeployment@4
+      displayName: 'Azure App Service Deploy'
+      inputs:
+        azureSubscription: 'Microsoft Partner Network(10)(55cf0ba9-e3c1-4ced-b5e9-5abb7b4d39b1)'
+        WebAppName: 'app-services-pink-xxivks-xgtqkml3'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/_DotNetDemoPipeline/WebApp'
