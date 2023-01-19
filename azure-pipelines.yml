@@ -63,7 +63,7 @@ stages:
       - task: PublishBuildArtifacts@1
         inputs:
           PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-          ArtifactName: 'drop'
+          ArtifactName: 'WebApp'
 ##########################################################################################################################################
 - stage: Unit_Test
   displayName: Running Unit Test
