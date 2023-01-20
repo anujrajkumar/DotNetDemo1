@@ -58,7 +58,6 @@ stages:
           command: 'publish'
           publishWebProjects: true
           arguments: '-o $(build.artifactStagingDirectory)'
-          zipAfterPublish: false
 
       - task: PublishBuildArtifacts@1
         inputs:
