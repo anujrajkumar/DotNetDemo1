@@ -82,22 +82,25 @@ stages:
           codeCoverageTool: 'Cobertura'
           summaryFileLocation: '**/*cobertura.xml'
 #############################################################################################################################################
-# - stage: Deploy_Stage
-#   displayName: Deploy Stage
-#   jobs:
-#   - job: Deploy
-#     displayName: Deploy to Web App
-#     steps:
-#     - checkout: none
+- stage: Deploy_Stage
+  displayName: Deploy Stage
+  jobs:
+  - job: Deploy
+    displayName: Deploy to Web App
+    steps:
+    - checkout: none
 
-#     - task: DownloadBuildArtifacts@1
-#       inputs:
-#         artifactName: 'drop'
-#         downloadPath: '$(System.ArtifactsDirectory)'
+    - task: DownloadBuildArtifacts@1
+      inputs:
+        buildType: 'current'
+        downloadType: 'single'
+        artifactName: 'WebApp'
+        downloadPath: '$(System.ArtifactsDirectory)'
 
-#     - task: AzureRmWebAppDeployment@4
-#       displayName: 'Azure App Service Deploy'
-#       inputs:
-#         azureSubscription: 'Microsoft Partner Network(10)(55cf0ba9-e3c1-4ced-b5e9-5abb7b4d39b1)'
-#         WebAppName: 'app-services-pink-xxivks-xgtqkml3'
-#         packageForLinux: '$(System.DefaultWorkingDirectory)/DotNetDemoPipeline/drop'
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Visual Studio Enterprise Subscription – MPN(3)(748eb2de-6ec3-4af2-b4d0-ec909d1934e9)'
+        appType: 'webApp'
+        WebAppName: 'DOtNet12'
+        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
