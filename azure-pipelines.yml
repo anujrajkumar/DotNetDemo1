@@ -57,12 +57,13 @@ stages:
         inputs:
           command: 'publish'
           publishWebProjects: true
-          arguments: '-o $(build.artifactStagingDirectory)'
+          arguments: '--configuration $(BuildConfiguration) --output $(build.artifactstagingdirectory)'
 
-      - task: PublishBuildArtifacts@1
+      - task: PublishPipelineArtifact@1
         inputs:
-          PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-          ArtifactName: 'WebApp'
+          targetPath: '$(build.artifactStagingDirectory)'
+          artifact: 'WebApp'
+          publishLocation: 'pipeline'
 ##########################################################################################################################################
 - stage: Unit_Test
   displayName: Running Unit Test
@@ -90,12 +91,11 @@ stages:
     steps:
     - checkout: none
 
-    - task: DownloadBuildArtifacts@1
+    - task: DownloadPipelineArtifact@2
       inputs:
         buildType: 'current'
-        downloadType: 'single'
         artifactName: 'WebApp'
-        downloadPath: '$(System.DefaultWorkingDirectory)'
+        targetPath: '$(Pipeline.Workspace)'
 
     - task: AzureRmWebAppDeployment@4
       inputs:
@@ -103,4 +103,4 @@ stages:
         azureSubscription: 'Visual Studio Enterprise Subscription – MPN(3)(748eb2de-6ec3-4af2-b4d0-ec909d1934e9)'
         appType: 'webApp'
         WebAppName: 'DOtNet12'
-        packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+        packageForLinux: '$(Pipeline.Workspace)/**/*.zip'
