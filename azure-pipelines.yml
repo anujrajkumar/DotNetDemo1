@@ -22,7 +22,7 @@ stages:
       steps:
       - task: SonarQubePrepare@5
         inputs:
-            SonarQube: 'sonarqube-emp'
+            SonarQube: 'poc'
             scannerMode: 'CLI'
             configMode: 'manual'
             cliProjectKey: 'DAtaAppp'
