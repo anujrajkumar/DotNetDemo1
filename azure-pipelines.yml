@@ -15,37 +15,21 @@ variables:
   buildConfiguration: 'Release'
 
 stages:
-- stage: Static_Code_Analysis
-  displayName: Static Code Analysis
-  jobs:
-    - job: SAST
-      steps:
-      - task: SonarQubePrepare@5
+      - task: SonarCloudPrepare@1
         inputs:
-            SonarQube: 'poc'
-            scannerMode: 'CLI'
-            configMode: 'manual'
-            cliProjectKey: 'DAtaAppp'
-            cliSources: '.'
-      - task: SonarQubeAnalyze@5
-      - task: SonarQubePublish@5
+          SonarCloud: 'DotNetDemoPipeline'
+          organization: 'demo-pipeline'
+          scannerMode: 'CLI'
+          configMode: 'manual'
+          cliProjectKey: 'DevOpsXperts-POC_DotNetDemoPipeline'
+          cliProjectName: 'DotNetDemoPipeline'
+          cliSources: '.'
+
+      - task: SonarCloudAnalyze@1
+
+      - task: SonarCloudPublish@1
         inputs:
           pollingTimeoutSec: '300'
-      # - task: SonarCloudPrepare@1
-      #   inputs:
-      #     SonarCloud: 'DotNetDemoPipeline'
-      #     organization: 'demo-pipeline'
-      #     scannerMode: 'CLI'
-      #     configMode: 'manual'
-      #     cliProjectKey: 'DevOpsXperts-POC_DotNetDemoPipeline'
-      #     cliProjectName: 'DotNetDemoPipeline'
-      #     cliSources: '.'
-
-      # - task: SonarCloudAnalyze@1
-
-      # - task: SonarCloudPublish@1
-      #   inputs:
-      #     pollingTimeoutSec: '300'
 ########################################################################################################################################
 - stage: Build
   displayName: Project Build
