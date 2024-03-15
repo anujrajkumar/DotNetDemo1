@@ -1,0 +1,5 @@
+service:
+  name: IIS-demo
+  identifier: IISdemo
+  orgIdentifier: default
+  projectIdentifier: demo
