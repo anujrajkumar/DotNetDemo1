@@ -33,6 +33,7 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
-                      dotnet build TodoistApp.Blazor/TodoistApp.Blazor.csproj
-                      dotnet test TodoistApp.UnitTests/TodoistApp.UnitTests.csproj
+                      dotnet restore TodoistApp.sln
+                      dotnet build
+                      dotnet test 
                       dotnet publish
