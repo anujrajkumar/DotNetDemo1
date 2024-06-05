@@ -36,4 +36,12 @@ pipeline:
                       dotnet restore TodoistApp.sln
                       dotnet build
                       dotnet test 
-                      dotnet publish
+                      dotnet publish --configuration Release --output ./published
+                      zip -r published_artifacts.zip ./published
+                      ls -ltr
+                      temp=$(find . -name '*.zip')
+                      zip="published_artifacts.101.zip"
+                      mv "$temp" "$zip"
+                      # export ZipFileName=$(find . -name '*.zip')
+                      export ZipFileName=$zip
+                      echo "$ZipFileName"
