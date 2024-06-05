@@ -45,3 +45,9 @@ pipeline:
                       # export ZipFileName=$(find . -name '*.zip')
                       export ZipFileName=$zip
                       echo "$ZipFileName"
+                  failureStrategies:
+                    - onFailure:
+                        errors:
+                          - AllErrors
+                        action:
+                          type: Ignore
