@@ -36,7 +36,7 @@ pipeline:
                       dotnet restore TodoistApp.sln
                       dotnet build
                       dotnet test
-                            TEST_EXIT_CODE=$?
+                      TEST_EXIT_CODE=$?
 
                             if [ $TEST_EXIT_CODE -eq 0 ]; then
                               echo "All tests passed. Proceeding to publish..."
