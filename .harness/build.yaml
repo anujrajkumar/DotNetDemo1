@@ -35,8 +35,20 @@ pipeline:
                     command: |-
                       dotnet restore TodoistApp.sln
                       dotnet build
-                      dotnet test || true
-                      dotnet publish --configuration Release --output ./published
+                      dotnet test
+                            TEST_EXIT_CODE=$?
+
+                            if [ $TEST_EXIT_CODE -eq 0 ]; then
+                              echo "All tests passed. Proceeding to publish..."
+                              dotnet publish --configuration Release --output ./published
+                            elif [ $TEST_EXIT_CODE -eq 1 ]; then
+                              echo "Some tests failed, but proceeding to publish..."
+                              dotnet publish --configuration Release --output ./published
+                            else
+                              echo "Critical error in tests. Stopping pipeline."
+                              exit $TEST_EXIT_CODE
+                            fi
+
                       zip -r published_artifacts.zip ./published
                       ls -ltr
                       temp=$(find . -name '*.zip')
