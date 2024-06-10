@@ -33,30 +33,43 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
+                      # Restore and build the solution
                       dotnet restore TodoistApp.sln
                       dotnet build
+
+                      # Run tests and capture the exit code
                       dotnet test
                       TEST_EXIT_CODE=$?
 
-                            if [ $TEST_EXIT_CODE -eq 0 ]; then
-                              echo "All tests passed. Proceeding to publish..."
-                              dotnet publish --configuration Release --output ./published
-                            elif [ $TEST_EXIT_CODE -eq 1 ]; then
-                              echo "Some tests failed, but proceeding to publish..."
-                              dotnet publish --configuration Release --output ./published
-                            else
-                              echo "Critical error in tests. Stopping pipeline."
-                              exit $TEST_EXIT_CODE
-                            fi
+                      # Debug: Print the exit code
+                      echo "Test exit code: $TEST_EXIT_CODE"
 
+                      # Conditional statements based on the exit code
+                      if [ $TEST_EXIT_CODE -eq 0 ]; then
+                        echo "All tests passed. Proceeding to publish..."
+                        dotnet publish --configuration Release --output ./published
+                      elif [ $TEST_EXIT_CODE -eq 1 ]; then
+                        echo "Some tests failed, but proceeding to publish..."
+                        dotnet publish --configuration Release --output ./published
+                      else
+                        echo "Critical error in tests. Stopping pipeline."
+                        exit $TEST_EXIT_CODE
+                      fi
+
+                      # Compress the published artifacts
                       zip -r published_artifacts.zip ./published
+
+                      # List the directory contents
                       ls -ltr
+
+                      # Rename the zip file
                       temp=$(find . -name '*.zip')
                       zip="published_artifacts.101.zip"
                       mv "$temp" "$zip"
-                      # export ZipFileName=$(find . -name '*.zip')
+
+                      # Export the zip file name
                       export ZipFileName=$zip
-                      echo "$ZipFileName"
+                      echo "Zip file name: $ZipFileName"
                   failureStrategies:
                     - onFailure:
                         errors:
