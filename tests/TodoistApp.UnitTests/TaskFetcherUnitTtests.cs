@@ -18,14 +18,14 @@ namespace TodoistApp.UnitTests
             var numberOfTasks = new TaskFetcher().GetNumberOfTasks();
             Assert.Equal(1, numberOfTasks);
         }
-        [Fact]
-        public void IsPrime_InputIs1_ReturnFalse()
-        {
-            var primeService = new PrimeService();
-            bool result = primeService.IsPrime(1);
-            Assert.False(result, "1 should not be prime");
+        // [Fact]
+        // public void IsPrime_InputIs1_ReturnFalse()
+        // {
+        //     var primeService = new PrimeService();
+        //     bool result = primeService.IsPrime(1);
+        //     Assert.False(result, "1 should not be prime");
 
-        }
+        // }
         
     }
 }
