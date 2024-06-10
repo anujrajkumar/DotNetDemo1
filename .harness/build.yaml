@@ -33,9 +33,6 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
-                      # Exit immediately if a command exits with a non-zero status.
-                      set -e
-
                       # Restore and build the solution
                       dotnet restore TodoistApp.sln
                       dotnet build
@@ -43,8 +40,8 @@ pipeline:
                       # Run tests and capture the exit code
                       dotnet test || TEST_EXIT_CODE=$?
 
-                      # If the variable is not set, set it to 0 (meaning all tests passed)
-                      TEST_EXIT_CODE=${TEST_EXIT_CODE:-0}
+                      # # If the variable is not set, set it to 0 (meaning all tests passed)
+                      # TEST_EXIT_CODE=${TEST_EXIT_CODE:-0}
 
                       # Debug: Print the exit code
                       echo "Test exit code: $TEST_EXIT_CODE"
