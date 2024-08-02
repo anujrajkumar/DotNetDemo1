@@ -7,7 +7,7 @@ service:
     spec:
       artifacts:
         primary:
-          primaryArtifactRef: <+input>
+          primaryArtifactRef: nexus
           sources:
             - spec:
                 connectorRef: IIS
