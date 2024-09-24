@@ -59,6 +59,33 @@ pipeline:
                       fi
 
                       # Compress the published artifacts
+                      # zip -r published_artifacts.zip ./published
+
+                      # List the directory contents
+                      ls -ltr
+
+                      # Rename the zip file
+                      # temp=$(find . -name '*.zip')
+                      # zip="published_artifacts.101.zip"
+                      # mv "$temp" "$zip"
+
+                      # # Export the zip file name
+                      # export ZipFileName=$zip
+                      # echo "Zip file name: $ZipFileName"
+                  failureStrategies:
+                    - onFailure:
+                        errors:
+                          - AllErrors
+                        action:
+                          type: Ignore
+              - step:
+                  type: Run
+                  name: Zip and Push
+                  identifier: Zip_and_Push
+                  spec:
+                    shell: Sh
+                    command: |-
+                      # Compress the published artifacts
                       zip -r published_artifacts.zip ./published
 
                       # List the directory contents
@@ -66,15 +93,10 @@ pipeline:
 
                       # Rename the zip file
                       temp=$(find . -name '*.zip')
-                      zip="published_artifacts.101.zip"
+                      # zip="published_artifacts.101.zip"
+                      zip="<+pipeline.stages.build.spec.commitSha>.zip"
                       mv "$temp" "$zip"
 
                       # Export the zip file name
                       export ZipFileName=$zip
                       echo "Zip file name: $ZipFileName"
-                  failureStrategies:
-                    - onFailure:
-                        errors:
-                          - AllErrors
-                        action:
-                          type: Ignore
