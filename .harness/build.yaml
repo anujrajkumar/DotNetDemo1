@@ -93,6 +93,7 @@ pipeline:
 
                       # Rename the zip file
                       temp=$(find . -name '*.zip')
+                      temp='$temp.sha'
                       # zip="published_artifacts.101.zip"
                       echo "<+codebase.commitSha>"
                       zip='<+codebase.commitSha>.zip'
