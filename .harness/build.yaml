@@ -94,8 +94,9 @@ pipeline:
                       # Rename the zip file
                       temp=$(find . -name '*.zip')
                       # zip="published_artifacts.101.zip"
-                      echo "<+pipeline.stages.build.spec.commitSha>"
-                      zip="<+pipeline.stages.build.spec.commitSha>.zip"
+                      echo "<+pipeline.properties.ci.codebase.build.spec.number>>"
+                      echo "<+codebase.commitSha>"
+                      zip="<+codebase.commitSha>.zip"
                       mv "$temp" "$zip"
 
                       # Export the zip file name
